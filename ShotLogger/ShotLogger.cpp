@@ -1,7 +1,7 @@
 #include "ShotLogger.h"
 #include "utils/parser.h"
 
-BAKKESMOD_PLUGIN(ShotLogger, "Log the shot strength.", "0.1", PLUGINTYPE_FREEPLAY)
+BAKKESMOD_PLUGIN(ShotLogger, "Log the shot strength.", "1.0", PLUGINTYPE_FREEPLAY)
 
 void ShotLogger::onLoad()
 {
