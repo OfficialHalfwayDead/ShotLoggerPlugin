@@ -1,6 +1,6 @@
 #pragma once
 #include "bakkesmod/plugin/bakkesmodplugin.h"
-#pragma comment( lib, "bakkesmod.lib" )
+#pragma comment( lib, "pluginsdk.lib" )
 
 class ShotLogger : public BakkesMod::Plugin::BakkesModPlugin
 {

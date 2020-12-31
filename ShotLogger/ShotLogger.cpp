@@ -1,7 +1,7 @@
 #include "ShotLogger.h"
 #include "utils/parser.h"
 
-BAKKESMOD_PLUGIN(ShotLogger, "Shot logging plugin", "1.1", PLUGINTYPE_FREEPLAY)
+BAKKESMOD_PLUGIN(ShotLogger, "Shot logging plugin", "1.2", PLUGINTYPE_FREEPLAY)
 
 void ShotLogger::onLoad()
 {
@@ -13,7 +13,7 @@ void ShotLogger::onLoad()
 	{ 
 		if (cvar.getBoolValue())
 		{
-			gameWrapper->HookEvent("Function TAGame.Car_TA.SetVehicleInput", bind(&ShotLogger::Tick, this));
+			gameWrapper->HookEvent("Function TAGame.Car_TA.SetVehicleInput", std::bind(&ShotLogger::Tick, this));
 		}
 		else
 		{
@@ -31,7 +31,7 @@ void ShotLogger::onLoad()
 	cvarManager->registerNotifier("shot_log_save", [this](std::vector<std::string> params)
 	{
 		std::ofstream logfile;
-		logfile.open("./bakkesmod/shots.csv");
+		logfile.open(gameWrapper->GetDataFolderW() + L"shots.csv");
 
 		for (auto it : this->measurements)
 		{
@@ -39,7 +39,7 @@ void ShotLogger::onLoad()
 		}
 
 		logfile.close();
-	}, "Reset the measurements.", PERMISSION_ALL);
+	}, "Save the measurements to BakkesModFolder/data/shots.csv", PERMISSION_ALL);
 
 }
 
